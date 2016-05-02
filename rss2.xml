@@ -1,34 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
   xmlns:atom="http://www.w3.org/2005/Atom"
-  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:rawvoice="http://www.rawvoice.com/rawvoiceRssModule/"
+  xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
+>
   <channel>
-    <title>{{ config.title }}</title>
+    <title>{{ config.title | e }}</title>
     <link>{{ url | uriencode }}</link>
     <atom:link href="{{ feed_url | uriencode }}" rel="self" type="application/rss+xml"/>
     {% if config.feed.hub %}<atom:link href="{{ config.feed.hub | uriencode }}" rel="hub"/>{% endif %}
-    <description>{{ config.description }}</description>
+    
+    <description>{{ config.description | e }}</description>
+    <itunes:summary>{{ config.description | e }}</itunes:summary>
+    <itunes:author>{{ config.author | e }}</itunes:author>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="http://7xtl1z.com2.z0.glb.clouddn.com/cover-v0.2.0.png" />
+    <image>
+      <title>{{ config.title | e }}</title>
+      <url>http://7xtl1z.com2.z0.glb.clouddn.com/cover-v0.2.0.png</url>
+      <link>{{ url | uriencode }}</link>
+    </image>
+    <itunes:category text="Science &amp; Medicine">
+      <itunes:category text="Social Sciences" />
+    </itunes:category>
+    <itunes:category text="News &amp; Politics">
+    </itunes:category>
+    <itunes:category text="Society &amp; Culture">
+      <itunes:category text="History" />
+    </itunes:category>
+    <rawvoice:rating>TV-G</rawvoice:rating>
+    
+    <itunes:owner>
+      <itunes:name>{{ config.author | e }}</itunes:name>
+      <itunes:email>{{ config.email | uriencode }}</itunes:email>
+    </itunes:owner>
+    <managingEditor>{{ config.email | uriencode }} ({{ config.author | e }})</managingEditor>
+    <copyright>{{ config.copyright | e }}</copyright>
+    <itunes:subtitle>{{ config.subtitle | e }}</itunes:subtitle>
+    
     <pubDate>{{ posts.first().updated.toDate().toUTCString() }}</pubDate>
-    <generator>http://hexo.io/</generator>
+    <language>zh-CN</language>
+    <sy:updatePeriod>hourly</sy:updatePeriod>
+    <sy:updateFrequency>1</sy:updateFrequency>
+    
     {% for post in posts.toArray() %}
     <item>
-      <title>{{ post.title }}</title>
+      <title>{{ post.title | e }}</title>
+      <itunes:subtitle>{{ post.subtitle | e }}</itunes:subtitle>
+      <itunes:author>{{ post.author | e }}</itunes:author>
       <link>{{ (url + post.path) | uriencode }}</link>
       <guid>{{ (url + post.path) | uriencode }}</guid>
       <pubDate>{{ post.date.toDate().toUTCString() }}</pubDate>
-      <description>
-      {% if post.description %}
-        {{ post.description }}
-      {% elif post.excerpt %}
-        {{ post.excerpt }}
-      {% elif post.content %}
-        {{ post.content.substring(0, 140) }}
+      <description><![CDATA[
+        {{ post.content | safe }}
+      ]]></description>
+      <itunes:summary><![CDATA[
+        {{ post.content | safe }}
+      ]]></itunes:summary>
+      {% if config.feed.content %}
+      <content:encoded><![CDATA[
+        {{ post.content | safe }}
+      ]]></content:encoded>
       {% endif %}
-      </description>
-      {% if config.feed.content and post.content %}
-      <content:encoded><![CDATA[{{ post.content | safe }}]]></content:encoded>
-      {% endif %}
-      {% if post.comments %}<comments>{{ (url + post.path) | uriencode }}#disqus_thread</comments>{% endif %}
+      <enclosure url="{{ post.audio | uriencode }}" type="audio/mpeg" />
+      <itunes:explicit>{{ post.explicit | e }}</itunes:explicit>
     </item>
     {% endfor %}
   </channel>
