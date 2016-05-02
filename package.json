@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-feed",
-  "version": "1.1.0",
+  "version": "cnp-1.0.1",
   "description": "Feed generator plugin for Hexo",
   "main": "index",
   "scripts": {
@@ -20,7 +20,7 @@
     "atom",
     "generator"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "Zhengyu Qian <laerhsif@gmail.com>, Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "license": "MIT",
   "dependencies": {
     "nunjucks": "^2.4.1",
