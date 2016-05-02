@@ -1,5 +1,5 @@
 {
-  "name": "hexo-generator-feed",
+  "name": "hexo-generator-feed--cnp-radio",
   "version": "cnp-1.0.1",
   "description": "Feed generator plugin for Hexo",
   "main": "index",
