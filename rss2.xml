@@ -69,6 +69,7 @@
       ]]></content:encoded>
       {% endif %}
       <enclosure url="{{ post.audio | uriencode }}" type="audio/mpeg" />
+      <itunes:image href="{{ post.cover | uriencode }}" />
       <itunes:explicit>{{ post.explicit | e }}</itunes:explicit>
     </item>
     {% endfor %}
