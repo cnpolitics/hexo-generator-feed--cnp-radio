@@ -11,38 +11,38 @@
   xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
 >
   <channel>
-    <title>{{ config.title | e }}</title>
-    <link>{{ url | uriencode }}</link>
+    <title>{{ config.podcast.cnp.title | e }}</title>
+    <link>{{ config.podcast.cnp.url | uriencode }}</link>
     <atom:link href="{{ feed_url | uriencode }}" rel="self" type="application/rss+xml"/>
-    {% if config.feed.hub %}<atom:link href="{{ config.feed.hub | uriencode }}" rel="hub"/>{% endif %}
     
-    <description>{{ config.description | e }}</description>
-    <itunes:summary>{{ config.description | e }}</itunes:summary>
-    <itunes:author>{{ config.author | e }}</itunes:author>
+    <description>{{ config.podcast.cnp.description | e }}</description>
+    <itunes:summary>{{ config.podcast.cnp.description | e }}</itunes:summary>
+    <itunes:author>{{ config.podcast.cnp.author | e }}</itunes:author>
     <itunes:explicit>no</itunes:explicit>
-    <itunes:image href="http://7xtl1z.com2.z0.glb.clouddn.com/cover-v0.2.0.png" />
+    <itunes:image href="{{ config.podcast.cnp.cover | uriencode }}" />
     <image>
-      <title>{{ config.title | e }}</title>
-      <url>http://7xtl1z.com2.z0.glb.clouddn.com/cover-v0.2.0.png</url>
-      <link>{{ url | uriencode }}</link>
+      <title>{{ config.podcast.cnp.title | e }}</title>
+      <url>{{ config.podcast.cnp.cover | uriencode }}</url>
+      <link>{{ config.podcast.cnp.url | uriencode }}</link>
     </image>
     <itunes:category text="Science &amp; Medicine">
       <itunes:category text="Social Sciences" />
-    </itunes:category>
-    <itunes:category text="News &amp; Politics">
+    <itunes:category text="Education">
+      <itunes:category text="Higher Education" />
     </itunes:category>
     <itunes:category text="Society &amp; Culture">
-      <itunes:category text="History" />
+      <itunes:category text="Philosophy" />
     </itunes:category>
+    
     <rawvoice:rating>TV-G</rawvoice:rating>
     
     <itunes:owner>
-      <itunes:name>{{ config.author | e }}</itunes:name>
-      <itunes:email>{{ config.email | uriencode }}</itunes:email>
+      <itunes:name>{{ config.podcast.cnp.author | e }}</itunes:name>
+      <itunes:email>{{ config.podcast.cnp.email | uriencode }}</itunes:email>
     </itunes:owner>
-    <managingEditor>{{ config.email | uriencode }} ({{ config.author | e }})</managingEditor>
-    <copyright>{{ config.copyright | e }}</copyright>
-    <itunes:subtitle>{{ config.subtitle | e }}</itunes:subtitle>
+    <managingEditor>{{ config.podcast.cnp.email | uriencode }} ({{ config.podcast.cnp.author | e }})</managingEditor>
+    <copyright>{{ config.podcast.cnp.copyright | e }}</copyright>
+    <itunes:subtitle>{{ config.podcast.cnp.subtitle | e }}</itunes:subtitle>
     
     <pubDate>{{ posts.first().updated.toDate().toUTCString() }}</pubDate>
     <language>zh-CN</language>
