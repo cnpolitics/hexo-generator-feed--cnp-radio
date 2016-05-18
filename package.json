@@ -1,7 +1,7 @@
 {
   "name": "hexo-generator-feed--cnp-radio",
-  "version": "1.1.0",
-  "description": "Feed generator plugin for Hexo",
+  "version": "1.2.0",
+  "description": "Podcast feed generator plugin for CNPolitics Radio",
   "main": "index",
   "scripts": {
     "eslint": "eslint .",
@@ -18,7 +18,10 @@
     "rss",
     "feed",
     "atom",
-    "generator"
+    "generator",
+    "podcast",
+    "itunes",
+    "cnpolitics"
   ],
   "author": "Zhengyu Qian <laerhsif@gmail.com>, Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "license": "MIT",
