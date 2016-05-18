@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-feed--cnp-radio",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Podcast feed generator plugin for CNPolitics Radio",
   "main": "index",
   "scripts": {
