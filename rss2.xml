@@ -52,22 +52,16 @@
     
     {% for post in posts.toArray() %}
     <item>
-      <title>{{ post.title | e }}</title>
+      <title>{{ (post.categories.data[0].name + " " + post.title) | e }}</title>
       <itunes:subtitle>{{ post.subtitle | e }}</itunes:subtitle>
       <itunes:author>{{ post.author | e }}</itunes:author>
       <link>{{ (url + post.path) | uriencode }}</link>
       <guid>{{ (url + post.path) | uriencode }}</guid>
       <pubDate>{{ post.date.toDate().toUTCString() }}</pubDate>
-      <description><![CDATA[
-        {{ post.content | safe }}
-      ]]></description>
-      <itunes:summary><![CDATA[
-        {{ post.content | safe }}
-      ]]></itunes:summary>
+      <description><![CDATA[{{ post.content | safe }}]]></description>
+      <itunes:summary><![CDATA[{{ post.content | safe }}]]></itunes:summary>
       {% if config.feed.content %}
-      <content:encoded><![CDATA[
-        {{ post.content | safe }}
-      ]]></content:encoded>
+      <content:encoded><![CDATA[{{ post.content | safe }}]]></content:encoded>
       {% endif %}
       <enclosure url="{{ post.audio | uriencode }}" type="audio/mpeg" />
       <itunes:image href="{{ post.cover | uriencode }}" />
