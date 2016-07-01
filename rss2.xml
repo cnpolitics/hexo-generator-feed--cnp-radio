@@ -13,6 +13,7 @@
   <channel>
     <title>{{ config.podcast.cnp.title | e }}</title>
     <link>{{ config.podcast.cnp.url | uriencode }}</link>
+    <itunes:new-feed-url>{{ config.podcast.cnp.feed | uriencode }}</itunes:new-feed-url>
     <atom:link href="{{ feed_url | uriencode }}" rel="self" type="application/rss+xml"/>
     
     <description>{{ config.podcast.cnp.description | e }}</description>
